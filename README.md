@@ -2,7 +2,6 @@
 
 ## atcoder
 AtCoderコンテストでの提出コード
-ABC, ARCがメインでの参加コンテストです。
 
 ## Codeforces
 CodeFocesコンテストでの提出コード
