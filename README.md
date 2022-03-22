@@ -7,5 +7,5 @@ AtCoderコンテストでの提出コード
 CodeFocesコンテストでの提出コード
 
 ## shojin
-精進で書いたコードです。
+AtCoderでの練習のために作成したコードです。
 AtCoder ProbremsでのDifficultyを参考にディレクトリを構成しています。
