@@ -9,7 +9,7 @@ contest_dir=$1
 
 if [ ! -d "$contest_dir" ]; then
     echo "create contest dir"
-    mkdir "$contest_dir" -p
+    mkdir "$contest_dir"
 fi
 
 for ch in {a..f}
