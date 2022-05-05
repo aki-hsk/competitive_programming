@@ -1,19 +1,19 @@
 #include<iostream>
+#include<vector>
 using namespace std;
 
-int n;
-void rec(int left, string s) {
-    if(s.size() == n) {
-        if(left == n-left) printf("%s\n", s.c_str());
+void rec(int left, int right, string s, int siz) {
+    if(s.size() == siz) {
+        if(left == right) printf("%s\n", s.c_str());
         return;
     }
-    int right = s.size() - left;
-    rec(left + 1, s + "(");
-    if(right < left) rec(left, s + ")");
-    return;
+    rec(left + 1, right, s + '(', siz);
+    if(left > right) rec(left, right + 1, s + ')', siz);
 }
 
 int main() {
+    int n;
     cin >> n;
-    rec(0, "");
+    if(n % 2 == 1) return 0;
+    rec(0, 0, "", n);
 }
