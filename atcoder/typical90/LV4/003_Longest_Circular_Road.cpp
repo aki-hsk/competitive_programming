@@ -4,39 +4,37 @@
 #include<algorithm>
 using namespace std;
 
-vector<vector<int>> g;
+vector<int> bfs(int n, int s, vector<vector<int>> g) {
+  vector<int> dist(n, -1);
+  dist[s] = 0;
+  queue<int> q;
+  q.push(s);
 
-int bfs(int s, vector<int>& dist) {
-    dist[s] = 0;
-    queue<int> q;
-    q.push(s);
-
-    while(!q.empty()) {
-        int v = q.front();
-        q.pop();
-        for(auto nv:g[v]) {
-            if(dist[nv] != -1) continue;
-            dist[nv] = dist[v] + 1;
-            q.push(nv);
-        }
+  while(!q.empty()) {
+    int v = q.front();
+    q.pop();
+    for(auto nv:g[v]) {
+      if(dist[nv] != -1) continue;
+      dist[nv] = dist[v] + 1;
+      q.push(nv);
     }
-    return max_element(dist.begin(), dist.end()) - dist.begin();
+  }
+  return dist;
 }
 
 int main() {
-    int n;
-    cin >> n;
-    g.resize(n);
-    for(int i=0; i<n-1; i++) {
-        int a, b;
-        cin >> a >> b;
-        a--; b--;
-        g[a].push_back(b);
-        g[b].push_back(a);
-    }
-
-    vector<int> dist1(n, -1), dist2(n, -1);
-    int a = bfs(0, dist1);
-    int b = bfs(a, dist2);
-    cout << dist2[b] + 1 << endl;
+  int n;
+  cin >> n;
+  vector<vector<int>> g(n);
+  for(int i=0; i<n-1; i++) {
+    int a, b;
+    cin >> a >> b;
+    a--; b--;
+    g[a].push_back(b);
+    g[b].push_back(a);
+  }
+  vector<int> dist_a = bfs(n, 0, g);
+  int farest_point = max_element(dist_a.begin(), dist_a.end()) - dist_a.begin();
+  vector<int> dist_b = bfs(n, farest_point, g);
+  cout << *max_element(dist_b.begin(), dist_b.end()) + 1 << endl;
 }
